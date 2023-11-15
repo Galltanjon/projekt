@@ -1,12 +1,10 @@
-#Skriven av Filip Eriksson
-#Grupp 38
+# Written by Filip Eriksson
+# Group 38
 #
-#Beskrivning: Programmet ska kunna hantera en vegetarisk kundorder 
-#och matcha kundens önskemål med lämpligast menyalternativ.
-#Därefter ska kunden komma till menyn med extra val innan
-#denne kan betala och få ett kvitto.
-#Kostnad för ingredienserna finns på separat fil
-#
+# Description: The program should handle a vegetarian customer order
+# and match the customer's preferences with the most suitable menu option.
+# Then, the customer will navigate to the menu with additional choices before
+# being able to pay and receive a receipt. The cost of ingredients is on a separate file.
 #
 #
 #
@@ -14,100 +12,93 @@
 #
 #
 #
+#
+# Everything will be translated to English
 
+class Order():
+    """Handles user input as an object"""
 
-class Beställning():
-    """hanterar användarens input som ett objekt"""
+    def __init__(self, ingredients, modifications, dressing, price):
+        """Defines the attributes of the salad"""
 
-    def __init__(self, ingredienser, ändringar, dressing, pris):
-        """definierar attributen på salladen"""
-
-        self.ingredienser = ingredienser
-        self.ändringar = ändringar
+        self.ingredients = ingredients
+        self.modifications = modifications
         self.dressing = dressing
-        self.pris = pris
-
+        self.price = price
 
     def __str__(self):
-        """skriver en sträng som presenterar salladen"""
+        """Returns a string representation of the salad"""
 
-        return str(self.ingredienser) + " " + str(self.ändringar) + " " + str(self.dressing) + " " + (str(self.pris))
+        return f"{self.ingredients} {self.modifications} {self.dressing} {self.price}"
 
-def användare_fritext(): 
-    """låter användaren fritt skriva vad de önskar ha i sin sallad (ändringar() inkluderas även här)"""
-        
+def user_freetext():
+    """Allows the user to freely write what they want in their salad (modifications included here)"""
 
-class Meny():
-    """importerar menyn från textfilen meny.txt och jämför användarens input med befintliga alternativ"""
+class Menu():
+    """Imports the menu from the text file 'menu.txt' and compares the user's input with existing options"""
 
-    def __init__(self, nummer, namn, ingredienser, pris):
-        self.ingredienser = ingredienser
-        self.nummer = nummer
-        self.namn = namn
-        self.pris = pris
+    def __init__(self, number, name, ingredients, price):
+        self.ingredients = ingredients
+        self.number = number
+        self.name = name
+        self.price = price
 
-def menyläs():
-    #en dictionary kan lagra listor, vilket antagligen hjälper när jag lagrar alla ingredienser i ett menyalternativ bakom en ensam siffra (menyalternativet)
+def read_menu():
+    # A dictionary can store lists, which probably helps when storing all ingredients in a menu option behind a single digit (menu option)
 
-    meny = {}
-    with open(r"C:\Users\flprk\Desktop\Workstation\Salladsprojekt\meny.txt", "r", encoding="utf-8") as f:
-        for rad in f:
-            renad_rad = rad.strip()
-            print(renad_rad)
+    menu = {}
+    with open(r"C:\Users\flprk\Desktop\Workstation\Salladsprojekt\menu.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            cleaned_line = line.strip()
+            print(cleaned_line)
 
-    return meny
-menyläs()
+    return menu
+read_menu()
 
-        """ def läs_meny(): 
-            läser in menyn från en textfil
-            file = open("meny.txt", "r", encoding="utf-8")
-            menyval = file.readline().strip()
-            while menyval:
-            lastname = str(file.readline().strip())
-            surname = str(file.readline().strip())
-            new_student = Student(surname, lastname, personalnumber)
-            self.students.append(new_student)
-            personalnumber = file.readline().strip()
-            file.close()"""
-        
+    """def read_menu(): 
+        Reads the menu from a text file
+        file = open("menu.txt", "r", encoding="utf-8")
+        menu_choice = file.readline().strip()
+        while menu_choice:
+        lastname = str(file.readline().strip())
+        surname = str(file.readline().strip())
+        new_student = Student(surname, lastname, personalnumber)
+        self.students.append(new_student)
+        personalnumber = file.readline().strip()
+        file.close()"""
 
-    def visa_meny():
-        """presenterar valen på menyn för användaren"""
+    def display_menu():
+        """Presents the menu options to the user"""
 
-    def matcha_sallad(): 
-        """undersöker vilka menyalternativ som matchar användarens önskemål och lagrar dessa i en lista"""
+    def match_salad():
+        """Examines which menu options match the user's preferences and stores them in a list"""
 
-    def föreslå_sallad(): 
-        """om inget matchar rakt av finns funktionen för att föreslå närmast matchande alternativ"""
+    def suggest_salad():
+        """If nothing matches directly, there is a function to suggest the closest matching option"""
 
+class AddOn():
+    """Imports add-ons from the text file 'addons.txt' and allows the user to choose a dressing or add ingredients"""
 
-class Tillval():
-    """importerar tillval från textfilen tillval.txt och låter användaren välja dressing eller lägga till ingredienser"""
+    def read_ingredients():
+        """Reads ingredients and additions from another text file"""
 
-    def läs_ingredienser():
-        """läser in ingredienserna och tilläggen från en annan textfil"""
+    def display_addons():
+        """After choosing everything else, the addons that can be added are presented"""
 
-    def visa_tillval(): 
-        """efter att ha valt allt annat presenteras tillvalen som kan läggas till"""
+    def choose_addons():
+        """Adds the addons with their costs if the user wants addons"""
 
-    def välj_tillval(): 
-        """lägger till tillvalen med sina kostnader om användaren vill ha tillval"""
+def choose_option():
+    """Allows the user to choose one of the options on the menu or the free text option"""
 
+def modifications():
+    """Allows the user to choose whether they want to add or remove ingredients in their salad"""
 
+def calculate_total_cost():
+    """Calculates the total cost based on menu choices and/or individual ingredient costs as well as addon costs"""
 
-def välj_alternativ(): 
-    """låter användaren välja något av alternativen på menyn eller alternativet för fritext"""
+def pay_receipt():
+    """The user is given the choice to pay, upon which they receive a receipt, or start over with the order"""
 
-def ändringar(): 
-    """låter användaren välja om de vill lägga till eller ta bort ingredienser i sin sallad"""
-
-def beräkna_totalkostnad(): 
-    """beräknar totalkostnaden baserat på menyval och/eller enskilda ingredienskostnader samt tillvalskostnad"""
-
-def betala_kvitto():
-    """användaren får valet om de vill betala, varpå de får ett kvitto, eller börja om med beställningen"""
-
-def main(): 
-    """organiserar resterande funktioner i en logisk följd"""
-
-
+def main():
+    """Organizes the remaining functions in a logical sequence"""
