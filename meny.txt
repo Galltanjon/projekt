@@ -1,99 +1,36 @@
 1
-wow-sallad
-tofu, salladsmix, bulgur, tomat, gurka, ost, rödlök, morot, sojabönor
+wow salad
+tofu, mixed greens, bulgur, tomato, cucumber, cheese, red onion, carrot, soybeans
 139
-
 2
-tasty-sallad
-avokado
-pasta
-gurka
-rödlök
-vitost
-bönblandning
-tomat
-rödkål
-citron
+tasty salad
+avocado, pasta, cucumber, red onion, feta cheese, bean mix, tomato, red cabbage, lemon
 139
-
 3
-roasty-sallad
-quorn
-potatissallad
-gurka
-bönblandning
-rödkål
-rödlök
-vitost
-rostadlök
+roasty salad
+quorn, potato salad, cucumber, bean mix, red cabbage, red onion, feta cheese, roasted onion
 139
-
 4
-ingefära-sallad
-oumph
-quinoa
-sojabönor
-ingefära
-rödkål
-keso
-gurka
-soltorkadtomat
+ginger salad
+oumph, quinoa, soybeans, ginger, red cabbage, cottage cheese, cucumber, sun-dried tomato
 139
-
 5
-falafel-sallad
-falafel
-bulgur
-rödlök
-rödkål
-soltorkadtomat
-oliver
-sesamfrön
-hummus
+falafel salad
+falafel, bulgur, red onion, red cabbage, sun-dried tomato, olives, sesame seeds, hummus
 139
-
 6
-vegano-sallad
-bbqoumph
-bönblandning
-honungsmelon
-rödlök
-morot
-rödbetshummus
+vegano salad
+bbq oumph, bean mix, honeydew melon, red onion, carrot, beetroot hummus
 139
-
 7
-hulk-sallad
-oumph
-quorn
-bulgur
-bönblandning
-broccoli
-keso
-tomat
-rostadlök
+hulk salad
+oumph, quorn, bulgur, bean mix, broccoli, cottage cheese, tomato, roasted onion
 154
-
 8
-mango-sallad
-tofu
-bulgur
-broccoli
-tomat
-gurka
-rödkål
-rödlök
-rostadlök
+mango salad
+tofu, bulgur, broccoli, tomato, cucumber, red cabbage, red onion, roasted onion
 139
-
 9
-grönalund-sallad
-quinoa
-rödbetshummus
-broccoli
-morot
-honungsmelon
-rödkål
-nötter
-avokado
+green grove salad
+quinoa, beetroot hummus, broccoli, carrot, honeydew melon, red cabbage, nuts, avocado
 139
