@@ -13,7 +13,27 @@
 #
 #
 #
-# Everything will be translated to English
+#
+class Menu():
+    """Imports the menu from the text file 'menu.txt' and compares the user's input with existing options"""
+
+    def __init__(self, number, name, ingredients, price):
+        self.ingredients = ingredients
+        self.number = number
+        self.name = name
+        self.price = price
+
+def read_menu():
+    # A dictionary can store lists, which probably helps when storing all ingredients in a menu option behind a single digit (menu option)
+
+    menu = {}
+    with open("meny.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            cleaned_line = line.strip()
+            print(cleaned_line)
+
+    return menu
+read_menu()
 
 class Order():
     """Handles user input as an object"""
@@ -33,48 +53,57 @@ class Order():
 
 def user_freetext():
     """Allows the user to freely write what they want in their salad (modifications included here)"""
+    user_ingredients = []
+    i = 0
+    print("What would you like to have in your salad?\nSeparate your input with enter")
+    print("When you're satisfied with your input:\n>Press 1 to find matching alternatives\nOtherwise:\n>Press 2 to remove latest ingredient\n>Press 3 to quit\n")
+    while i == 0:
+        user_choice = (input(">"))
+        if user_choice == "1":
+            i += 1
+            print("salad matching...")
+            print("salad suggesting...")
 
-class Menu():
-    """Imports the menu from the text file 'menu.txt' and compares the user's input with existing options"""
+        elif user_choice == "2": 
+            try:
+                print("Removed " + user_ingredients[-1])
+                user_ingredients.pop()
+            except IndexError:
+                print("There are no ingredients to remove")
 
-    def __init__(self, number, name, ingredients, price):
-        self.ingredients = ingredients
-        self.number = number
-        self.name = name
-        self.price = price
+        elif user_choice == "3":
+            i += 1
+            quit
 
-def read_menu():
-    # A dictionary can store lists, which probably helps when storing all ingredients in a menu option behind a single digit (menu option)
+        else:
+            user_ingredients.append(user_choice)
+            print(user_ingredients)
 
-    menu = {}
-    with open(r"C:\Users\flprk\Desktop\Workstation\Salladsprojekt\menu.txt", "r", encoding="utf-8") as f:
-        for line in f:
-            cleaned_line = line.strip()
-            print(cleaned_line)
 
-    return menu
-read_menu()
 
-    """def read_menu(): 
-        Reads the menu from a text file
-        file = open("menu.txt", "r", encoding="utf-8")
-        menu_choice = file.readline().strip()
-        while menu_choice:
-        lastname = str(file.readline().strip())
-        surname = str(file.readline().strip())
-        new_student = Student(surname, lastname, personalnumber)
-        self.students.append(new_student)
-        personalnumber = file.readline().strip()
-        file.close()"""
 
-    def display_menu():
+
+
+        
+user_freetext()
+
+
+
+
+
+
+def display_menu():
         """Presents the menu options to the user"""
 
-    def match_salad():
-        """Examines which menu options match the user's preferences and stores them in a list"""
+def match_salad():
+    """Examines which menu options match the user's preferences and stores them in a list"""
+    print("matching salad...")
+    return match_salad()
 
-    def suggest_salad():
-        """If nothing matches directly, there is a function to suggest the closest matching option"""
+def suggest_salad():
+    """If nothing matches directly, there is a function to suggest the closest matching option"""
+    print("suggesting salad...")
+    return suggest_salad()
 
 class AddOn():
     """Imports add-ons from the text file 'addons.txt' and allows the user to choose a dressing or add ingredients"""
