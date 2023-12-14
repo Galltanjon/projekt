@@ -1,32 +1,111 @@
-fetadressing
-currydressing
-vitlöksdressing
-franskvinägrett
-basilikadressing
-sesamdressing
-chili-aiolidressing
-senapsdressing
-tryffelmayo
-ingendressing
-
-avokado
+1
+feta dressing
+10
+2
+curry dressing
+10
+3
+garlic dressing
+10
+4
+french vinaigrette
+10
+5
+basil dressing
+10
+6
+sesame dressing
+10
+7
+chili aioli dressing
+10
+8
+mustard dressing
+10
+9
+truffle mayo
+10
+10
+avocado
+20
+11
 broccoli
-bönblandning
-tomat
+10
+12
+bean mix
+10
+13
+tomato
+10
+14
 falafel
-dressing
-nötter
+25
+15
+nuts
+15
+16
 oumph
-gurka
-rödbetshummus
+25
+17
+cucumber
+10
+18
+beetroot hummus
+15
+19
 hummus
-keso
-morot
-oliver
-rostadlök
-rödkål
-rödlök
-ägg
-soltorkadtomat
-sojabönor
+15
+20
+cottage cheese
+15
+21
+carrot
+10
+22
+olives
+10
+23
+fried onion
+10
+24
+red cabbage
+10
+25
+red onion
+10
+26
+egg
+15
+27
+sun-dried tomato
+10
+28
+soybeans
+10
+29
 jalapeno
+10
+30
+quinoa
+10
+31
+tofu
+25
+32
+mixed greens
+10
+33
+bulgur
+15
+34
+cheese
+15
+35
+pasta
+20
+36
+feta cheese
+15
+37
+lemon
+10
