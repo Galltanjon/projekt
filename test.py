@@ -1,53 +1,75 @@
-class Salad:
-    def __init__(self, menu_number, menu_name, ingredients, price):
-        self.menu_number = menu_number
-        self.menu_name = menu_name
+class Items:
+    """Imports single ingredients and dressings from text file 'addons.txt' to be handled as objects"""
+
+    def __init__(self, number, name, price):
+        self.number = number
+        self.name = name
+        self.price = price
+
+    def __str__(self):
+        return f"Item {self.number}: {self.name}\nPrice: {self.price} SEK"
+    
+
+
+#Läs in items
+
+
+
+
+
+
+class Options():
+    """Imports the menu from the text file 'menu.txt'."""
+
+    def __init__(self, number, name, ingredients, price):
+
+        self.number = number
+        self.name = name
         self.ingredients = ingredients
         self.price = price
 
-    """def __str__(self):
+
+    def __str__(self):
+
+        return f"Menu {self.number}: {self.name}\nIngredients: {', '.join(self.ingredients)}\nPrice: {self.price} SEK"
+    
+
+
+
+
+
+
+
+    def read_menu():
+
+        menus = []
+        menus_ingredients = {}
+        menus_prices = {}
+
+        with open("menu.txt", "r", encoding="utf-8") as f: #Här någonstans ska flera olika menyer kunna väljas
+            lines = f.read().splitlines()
+
+        for i in range(0, len(lines), 4):
+            number = int(lines[i])
+            name = lines[i + 1]
+            ingredients = lines[i + 2].split(', ')
+            ingredients.sort()
+            price = int(lines[i + 3])
+
+            menu_options = Options(number, name, ingredients, price)
+
+            menus.append(menu_options)
+            menus_ingredients.update({number : ingredients})
+            menus_prices.update({number : price})
+
+        return menus, menus_ingredients, menus_prices
+    
+menus, menus_ingredients, menus_prices = Options.read_menu()
+
+#menus = read_menu()
+for menu in menus:
+    print(menu) #Just menu to read each instance, menu.ingredients for each ingredients list, menu.price for instants price etc.
+    print("------------------------")
+
         
-        Returns a string representation of the salad
-        #return f"{self.menu_number} {self.menu_name} {self.ingredients} {self.price}"
-        #return str(self.menu_number) + " " + str(self.menu_name) + " " + str(self.ingredients) + " " + (str(self.price))"""
-
-def read_menu():
-    """Opens textfile of menus (UTF-8) and reads lines in groups of four (how each salad is structured in meny.txt), ending when no more lines.
-    After each salad is read from file, an instance of the Salad class is created and each salad is stored in a dictionary with its menu number as key.
-    Finally the user can see the menu (might be reworked to be read from the dictionary in its own function instead), and at last the textfile is closed."""
-
-    menu_dict = {}
-    # Open the text file for reading with UTF-8 encoding
-    with open(r'C:\Users\flprk\Desktop\Workstation\Salladsprojekt\meny.txt', 'r', encoding='utf-8') as file:
-        # Loop through the file and read 4 lines at a time
-        while True:
-            # Read 4 lines
-            menu_number = file.readline().strip()
-            menu_name = file.readline().strip()
-            ingredients = file.readline().strip()
-            price = file.readline().strip()
-
-            # If any line is empty, break the loop. Hittat och utforskat via CHATGPT
-            if not all([menu_number, menu_name, ingredients, price]):
-                break
-
-            # Create an instance of the Sallad class
-            sallad_instance = Salad(menu_number, menu_name, ingredients, price)
-            menu_dict[menu_number] = sallad_instance
-            
-            # Do something with the created instance (e.g., print its details)
-            print("Menu Number:", sallad_instance.menu_number)
-            print("Name:", sallad_instance.menu_name)
-            print("Ingredients:", sallad_instance.ingredients)
-            print("Price:", sallad_instance.price)
-            print("----")  # Separation line between sets of 4 lines
-    return menu_dict
-
-# Call the read_menu function to read from the file and print the menu details
-menu_items_dict = read_menu()
-
-"""# Access individual menu items in the dictionary using menu numbers as keys
-for menu_number, menu_item in menu_items_dict.items():
-    print(f"Menu Number: {menu_number}")
-    print(menu_item)
-    print("----")  # Separation line between menu items"""
+print(menus_ingredients)
