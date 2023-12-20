@@ -1,0 +1,9 @@
+kyckling, 60
+sallad, 20
+krutonger, 45
+oliver, 30
+zucchini, 15
+paprika, 10
+fetaost, 60
+bulgur, 30
+tomater, 100
