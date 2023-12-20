@@ -1,0 +1,5 @@
+Caesar Sallad, 150, 4, kyckling, sallad, krutonger, oliver
+Skummisen, 120, 5, sallad, zucchini, paprika, fetaost, krutonger
+Bulgur Sallad, 140, 2, sallad, bulgur
+Gurk Sallad, 200, 3, gurka, sallad, tomater
+test sallad, 250, 2, paprika, sallad
