@@ -1,0 +1,74 @@
+feta dressing
+10
+curry dressing
+10
+garlic dressing
+10
+french vinaigrette
+10
+basil dressing
+10
+sesame dressing
+10
+chili aioli dressing
+10
+mustard dressing
+10
+truffle mayo
+10
+avocado
+20
+broccoli
+10
+bean mix
+10
+tomato
+10
+falafel
+25
+nuts
+15
+oumph
+25
+cucumber
+10
+beetroot hummus
+15
+hummus
+15
+cottage cheese
+15
+carrot
+10
+olives
+10
+fried onion
+10
+red cabbage
+10
+red onion
+10
+egg
+15
+sun-dried tomato
+10
+soybeans
+10
+jalapeno
+10
+quinoa
+10
+tofu
+25
+mixed greens
+10
+bulgur
+15
+cheese
+15
+pasta
+20
+feta cheese
+15
+lemon
+10
