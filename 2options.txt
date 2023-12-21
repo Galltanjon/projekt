@@ -1,0 +1,80 @@
+avocado
+25
+mixed greens
+10
+quinoa
+10
+cucumber
+10
+cherry tomatoes
+10
+feta cheese
+15
+red onion
+10
+carrot
+10
+walnuts
+15
+chickpeas
+10
+artichoke hearts
+10
+kalamata olives
+10
+olive oil
+10
+orange segments
+10
+almonds
+10
+cranberries
+10
+pecans
+15
+goat cheese
+20
+balsamic vinaigrette
+10
+butternut squash
+10
+kale
+10
+wild rice
+10
+black beans
+10
+corn
+10
+cilantro
+10
+lime dressing
+10
+mozzarella balls
+20
+basil
+10
+arugula
+10
+balsamic glaze
+10
+croutons
+10
+parmesan cheese
+20
+caesar dressing
+10
+roasted sweet potato
+20
+lime dressing
+10
+rainbow quinoa
+10
+bell peppers
+10
+lemon herb dressing
+10
+peanuts
+10
+thai peanut dressing
+10
