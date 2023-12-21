@@ -1,3 +1,4 @@
+import sys
 class MenuItem():
     """Defines class MenuItem representing an item or alternative on the menu"""
 
@@ -64,7 +65,7 @@ def user_wishes(options):
 
     wishes = []
     ingredients = []
-    print("Enter the ingredients you want\nWrite done when finished")  
+    print("Enter the ingredients you want separated by [enter]\nWrite done when finished")  
     while ingredients != "done":
         ingredients = input("Ingredients: ").lower()
         if ingredients == "done":
@@ -76,32 +77,37 @@ def user_wishes(options):
     return wishes
 
 
-def find_best_match(user_wishes, menus):
+def find_best_match(user_wishes, menus, options):
     """Finds best menu match based on user input.
     Also finds ingredients to be completed"""
 
-    
-    
     best_match = None
     max_matching_ingredients = 0
+    extra_ingredients = {}
 
     for menu in menus:
-        matching_ingredients = len(set(user_wishes).intersection(menu.ingredients)) #chatGPT - calculated count of matching ingredients between users wishes and current menu
+        matching_ingredients = len(set(user_wishes).intersection(menu.ingredients))
 
-        if matching_ingredients > max_matching_ingredients: #With every loop through menus this checks if (from top to bottom) the row it is on is a better match or not, updates best current match if it is
+        if matching_ingredients > max_matching_ingredients:
             max_matching_ingredients = matching_ingredients
             best_match = menu
+            extra_ingredients = {ingredient: next((option.price for option in options if option.ingredients == ingredient), 0) for ingredient in set(user_wishes) - set(best_match.ingredients)}
         elif matching_ingredients == max_matching_ingredients and (best_match is None or menu.price < best_match.price):
             best_match = menu
+            extra_ingredients = {ingredient: next((option.price for option in options if option.ingredients == ingredient), 0) for ingredient in set(user_wishes) - set(best_match.ingredients)}
 
-    if best_match:  #If any good match, the difference between user input and best match will be what has to be completed
+    if best_match:
         needed_ingredients = set(best_match.ingredients) - set(user_wishes)
-        return best_match, needed_ingredients
+        return best_match, needed_ingredients, extra_ingredients
     else:
-        #Gives set of common elements and the length of commonality for every menu, highest number wins the comparison and is thereby closest match
-        closest_match = min(menus, key=lambda x: len(set(user_wishes).intersection(x.ingredients))) #chatGPT for this row
+        closest_match = min(menus, key=lambda x: len(set(user_wishes).intersection(x.ingredients)))
         missing_ingredients = set(closest_match.ingredients) - set(user_wishes)
-        return closest_match, missing_ingredients
+
+        # Initialize extra ingredients with their costs based on available options
+        extra_ingredients = {ingredient: next((option.price for option in options if option.ingredients == ingredient), None) for ingredient in set(user_wishes) - set(closest_match.ingredients)}
+
+        return closest_match, missing_ingredients, extra_ingredients
+
 
 
 def addons(options, user_wishes_list, order_cost):
@@ -109,7 +115,7 @@ def addons(options, user_wishes_list, order_cost):
     Checks if entered ingredient is actually an option."""
 
     addons_wishes = []
-    print("Enter the addons you want\nWrite done when finished")
+    print("Enter the addons you want separated by [enter]\nWrite done when finished")
     while True:
         ingredient = input("Addon: ").lower()
         if ingredient == "done":
@@ -125,31 +131,14 @@ def addons(options, user_wishes_list, order_cost):
     return order_cost, addons_wishes
 
 
-def receipt(best_match, addons_wishes, order_cost):
-    """Writes receipt including ordered items and their costs, as well as total cost."""
-
-    with open("receipt.txt", "w") as receipt:
-        receipt.write(f"{best_match.name}: {best_match.price} SEK\n")
-        for addon, addon_price in addons_wishes:
-            receipt.write(f"{addon}: {addon_price} SEK\n")
-        receipt.write(f"Total cost: {order_cost} SEK")
-    return receipt
-
-
-def main():
-    """Takes user input to select a salad bar.
-    Reads menu and options from selected bar.
-    Takes user input for main order and addons.
-    Displays the best match for the main order and needed ingredients.
-    Provides options to complete the order, add addons, or start a new order.
-    Prints receipt based on the completed order."""
-
+def choose_bar():
+    """Choose between (in this case) bar 1 or 2"""
     while True:
-        bar = input("Write '1' for the first salad bar or '2' for the second\n>")
-        if bar == "1" or bar == "2":
-            break
-        else:
-            print("Choose either 1 or 2")
+            bar = input("Write '1' for the first salad bar or '2' for the second\n>")
+            if bar == "1" or bar == "2":
+                break
+            else:
+                print("Choose either 1 or 2")
 
     print(f"Welcome to salad bar {bar}")
     menus = read_menu(f"{bar}menu.txt")
@@ -158,13 +147,54 @@ def main():
     for option in options:
         print(option)
         print("------------------------")
+    
+    return menus, options
 
-    order_cost = 0
-    addons_wishes = [] 
-    i = 0
-    while i == 0:
+def find_extra_ingredient_cost(extra_ingredients, options):
+    """Finds the cost of extra ingredients based on available options."""
+    extra_ingredient_cost = 0
+    for extra_ingredient in extra_ingredients:
+        matching_option = next((option for option in options if option.ingredients == extra_ingredient), None)
+        if matching_option:
+            extra_ingredient_cost += matching_option.price
+    return extra_ingredient_cost
+
+def receipt(best_match, addons_wishes, extra_ingredients, total_order_cost):
+    """Writes receipt including ordered items and their costs, as well as total cost."""
+    with open("receipt.txt", "w") as receipt_file:
+        receipt_file.write(f"{best_match.name}: {best_match.price} SEK\n")
+
+        for addon, addon_price in addons_wishes:
+            receipt_file.write(f"{addon}: {addon_price} SEK\n")
+
+        if extra_ingredients:
+            receipt_file.write("\nExtra Ingredients:\n")
+            for ingredient, extra_ingredient_cost in extra_ingredients.items():
+                receipt_file.write(f"{ingredient}: {extra_ingredient_cost} SEK\n")
+
+            # Calculate the total cost of extra ingredients
+            extra_ingredients_cost = sum(extra_ingredients.values())
+            receipt_file.write(f"Additional cost for extra ingredients: {extra_ingredients_cost} SEK\n")
+
+        receipt_file.write(f"Total cost: {total_order_cost} SEK")
+
+def main(menus, options):
+    """Takes user input to select a salad bar.
+    Reads menu and options from the selected bar.
+    Takes user input for the main order and addons.
+    Displays the best match for the main order and needed ingredients.
+    Provides options to complete the order, add addons, or start a new order.
+    Prints a receipt based on the completed order."""
+
+    total_order_cost = 0
+
+    while True:
+        order_cost = 0
+        addons_wishes = []  
+        extra_ingredients = set()
+
         user_wishes_list = user_wishes(options)
-        best_match, needed_ingredients = find_best_match(user_wishes_list, menus)
+        best_match, needed_ingredients, extra_ingredients = find_best_match(user_wishes_list, menus, options)
 
         if best_match:
             print(f"\nBest Match: {best_match.name}\nPrice: {best_match.price} SEK")
@@ -172,30 +202,39 @@ def main():
                 print("Needed Ingredients:")
                 for ingredient in needed_ingredients:
                     print(ingredient)
-                j = 0
-                while j == 0:
-                    accept_order = input("'yes' to complete main order, 'no' to add addons, 'new' to restart order\n>")
-                    if accept_order == "yes":
-                        order_cost += best_match.price
-                        i = 1
-                        j = 1
-                    elif accept_order == "no":
-                        order_cost, addons_wishes = addons(options, user_wishes_list, order_cost)  
-                        order_cost += best_match.price
-                        i = 1
-                        j = 1
-                    elif accept_order == "new":
-                        i = 0
-                        j = 1
-                    else:
-                        print("Write 'yes', 'no' or 'new'")
+            if extra_ingredients:
+                print("\nExtra Ingredients:")
+                for ingredient in extra_ingredients:
+                    print(ingredient)
+                # Calculate the cost of extra ingredients
+                extra_ingredient_cost = find_extra_ingredient_cost(extra_ingredients, options)
+                print(f"Additional cost for extra ingredients: {extra_ingredient_cost} SEK")
+                order_cost += extra_ingredient_cost
+
+            while True:
+                accept_order = input("'yes' to complete the main order, 'no' to add addons, 'q' to quit\n>")
+                if accept_order == "yes":
+                    order_cost += best_match.price
+                    total_order_cost += order_cost
+                    break  # Exit the loop after successfully processing the order
+                elif accept_order == "no":
+                    order_cost, addons_wishes = addons(options, user_wishes_list, order_cost)
+                    order_cost += best_match.price
+                    total_order_cost += order_cost
+                    break  # Exit the loop after successfully processing the order
+                elif accept_order == "q":
+                    sys.exit()
+                else:
+                    print("Write 'yes', 'no' or 'new'")
         else:
             print("No suggestion found. Try a new order")
-            i = 0
 
-    receipt(best_match, addons_wishes, order_cost)
-    print("Here is the receipt")
-    print("Enjoy!")
+        receipt(best_match, addons_wishes, extra_ingredients, order_cost)
+
+        print("Here is the receipt")
+        print("Enjoy!")
+        break
 
 if __name__ == "__main__":
-    main()
+    menus, options = choose_bar()
+    main(menus, options)
