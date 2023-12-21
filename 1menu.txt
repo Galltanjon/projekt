@@ -1,0 +1,27 @@
+wow salad
+tofu, mixed greens, bulgur, tomato, cucumber, cheese, red onion, carrot, soybeans
+129
+tasty salad
+avocado, pasta, cucumber, red onion, feta cheese, bean mix, tomato, red cabbage, lemon
+139
+roasty salad
+quorn, potato salad, cucumber, bean mix, red cabbage, red onion, feta cheese, roasted onion
+128
+ginger salad
+oumph, quinoa, soybeans, ginger, red cabbage, cottage cheese, cucumber, sun-dried tomato
+135
+falafel salad
+falafel, bulgur, red onion, red cabbage, sun-dried tomato, olives, sesame seeds, hummus
+145
+vegano salad
+bbq oumph, bean mix, honeydew melon, red onion, carrot, beetroot hummus
+137
+hulk salad
+oumph, quorn, bulgur, bean mix, broccoli, cottage cheese, tomato, roasted onion
+154
+mango salad
+tofu, bulgur, broccoli, tomato, cucumber, red cabbage, red onion, roasted onion
+143
+green grove salad
+quinoa, beetroot hummus, broccoli, carrot, honeydew melon, red cabbage, nuts, avocado
+134
